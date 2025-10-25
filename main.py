@@ -1,5 +1,6 @@
 import math
 import random
+import numpy
 
 # биномиальное распределение (Бернули при n = 1)
 def getBi(n: int, p:float):
@@ -29,6 +30,14 @@ def getNegBi(r: int, p: float):
 
     return failures
 
+# несмещённая оценка мат ожидания
+def measureOfExpected(arr):
+    return numpy.mean(arr)
+
+def measureOfDispersiya(arr):
+    # Делаем n-1
+    return numpy.var(arr, ddof=1)
+
 
 if __name__ == "__main__":
     n = 1000
@@ -36,3 +45,7 @@ if __name__ == "__main__":
     print("bernuli:", bernuli)
     negBernuli = [getNegBi(5, 0.25) for i in range(n)]
     print("negative Bernuli: ", negBernuli)
+    print("bernuli difference betwen otsenka and real is", abs(0.5 - measureOfExpected(bernuli)))
+    print("bernuli difference betwen dispersiya and real is", abs(0.25 - measureOfDispersiya(bernuli)))
+    print("neg bernuli difference betwen otsenka and real is", abs(15 - measureOfExpected(negBernuli)))
+    print("neg bernuli difference betwen dispersiya and real is", abs(60 - measureOfDispersiya(negBernuli)))
