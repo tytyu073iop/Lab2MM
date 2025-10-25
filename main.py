@@ -30,8 +30,9 @@ def getNegBi(r: int, p: float):
     return failures
 
 
-for i in range(10):
-    print(getBi(1000, 0.5))
-print('\nstep\n')
-for i in range(10):
-    print(getNegBi(1000, 0.5))
+if __name__ == "__main__":
+    n = 1000
+    bernuli = [getBi(1, 0.5) for i in range(n)]
+    print("bernuli:", bernuli)
+    negBernuli = [getNegBi(5, 0.25) for i in range(n)]
+    print("negative Bernuli: ", negBernuli)
